@@ -24,13 +24,13 @@ Adicionar ao arquivo de configuração
 ## BSPWM
 
 ```bash
-$HOME/polybar-collection/launch.sh
+$HOME/.config/polybar/launch.sh
 ```
 
 ## I3wm
 
 ```bash
-exec_always --no-startup-id $HOME/polybar-collection/launch.sh
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 ```
 
 # Alterando módulos
@@ -146,8 +146,14 @@ modules-right = memory margin cpu margin xbacklight margin pulseaudio margin wal
 
 ![desktop](screenshots/onedark/desktop.png)
 
+O layout do One Dark fica na seção `[layout]` de `themes/onedark/config.ini`:
+
 ```ini
-modules-left = bspwm margin date margin weather margin mpd
-modules-center =
-modules-right = cpu margin memory margin pulseaudio margin xbacklight margin wallz margin session
+left = bspwm margin date margin weather
+center =
+right = cpu margin temperature margin memory margin pulseaudio margin backlight margin battery margin wallz margin session
 ```
+
+O `launch.sh` sobe uma barra por monitor: `bar/main` no monitor primário (com o
+módulo `tray`) e `bar/secondary` nos demais, pois só pode existir um tray.
+Em cada monitor o módulo `bspwm` mostra apenas o desktop daquele monitor.
