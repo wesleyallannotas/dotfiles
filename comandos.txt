@@ -1,2 +1,13 @@
 xhost +si:localuser:$USER
 xmodmpa .Xmodmap
+
+nmcli device wifi list                               # ver redes
+nmcli device wifi connect "Rede" password "senha"    # conectar
+
+bluetoothctl
+# dentro dele:
+scan on            # procurar dispositivos (anote o endereço XX:XX:...)
+pair XX:XX:XX:XX:XX:XX
+connect XX:XX:XX:XX:XX:XX
+trust XX:XX:XX:XX:XX:XX    # reconecta sozinho das próximas vezes
+exit
