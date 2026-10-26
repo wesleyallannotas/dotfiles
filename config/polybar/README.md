@@ -73,7 +73,7 @@ Still thinking about this one, maybe I should add more 'backend' options, for no
 ```ini
 modules-left = date weather round-right
 modules-center = round-left bspwm round-right
-modules-right = round-left mpd
+modules-right = round-left xkeyboard mpd
 ```
 
 ### Chnvok
@@ -83,7 +83,7 @@ modules-right = round-left mpd
 ```ini
 modules-left = date weather mpd
 modules-center = bspwm
-modules-right = memory cpu xbacklight pulseaudio session
+modules-right = xkeyboard memory cpu xbacklight pulseaudio session
 ```
 
 ### Dracula
@@ -93,7 +93,7 @@ modules-right = memory cpu xbacklight pulseaudio session
 ```ini
 modules-left = date margin weather margin mpd
 modules-center = bspwm
-modules-right = memory margin cpu margin xbacklight margin pulseaudio margin battery margin session
+modules-right = xkeyboard margin memory margin cpu margin xbacklight margin pulseaudio margin battery margin session
 ```
 
 ### Gruvbox
@@ -103,7 +103,7 @@ modules-right = memory margin cpu margin xbacklight margin pulseaudio margin bat
 ```ini
 modules-left = bspwm
 modules-center = round-left-blue weather date round-right-blue margin round-left mpd round-right
-modules-right = cpu memory pulseaudio xbacklight
+modules-right = xkeyboard cpu memory pulseaudio xbacklight
 ```
 
 ### Lofi
@@ -113,7 +113,7 @@ modules-right = cpu memory pulseaudio xbacklight
 ```ini
 modules-left = bspwm
 modules-center = mpd
-modules-right = date weather
+modules-right = xkeyboard date weather
 ```
 
 ### Material
@@ -123,7 +123,7 @@ modules-right = date weather
 ```ini
 modules-left = weather margin date margin mpd tri-upper-right tri-lower-left bspwm tri-upper-right
 modules-center =
-modules-right = memory margin cpu margin xbacklight margin pulseaudio
+modules-right = xkeyboard margin memory margin cpu margin xbacklight margin pulseaudio
 ```
 
 ### Minimal
@@ -133,7 +133,7 @@ modules-right = memory margin cpu margin xbacklight margin pulseaudio
 ```ini
 modules-left = date weather bspwm
 modules-center = mpd
-modules-right = cpu memory xbacklight pulseaudio
+modules-right = xkeyboard cpu memory xbacklight pulseaudio
 ```
 
 ### Nord
@@ -143,7 +143,7 @@ modules-right = cpu memory xbacklight pulseaudio
 ```ini
 modules-left = date margin weather margin mpd round-right
 modules-center = trap-left bspwm trap-right
-modules-right = memory margin cpu margin xbacklight margin pulseaudio margin wallz margin session
+modules-right = xkeyboard margin memory margin cpu margin xbacklight margin pulseaudio margin wallz margin session
 ```
 
 ### One Dark
