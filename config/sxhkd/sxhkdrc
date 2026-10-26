@@ -22,7 +22,8 @@ super + n
 
 # Ranger or thunar
 super + {_,shift + }a
-	{nautilus, alacritty -e ranger}
+	{thunar, alacritty -e ranger}
+	# {nautilus, alacritty -e ranger}
 	# {nautilus, kitty -e ranger}
 
 # Code
