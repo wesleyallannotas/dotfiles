@@ -155,8 +155,8 @@ O layout do One Dark (o atual do `modules.ini`):
 ```ini
 modules-left = bspwm margin date margin weather
 modules-center =
-modules-right = cpu margin temperature margin memory margin pulseaudio margin backlight margin battery margin wallz margin session margin tray
-modules-right-notray = cpu margin temperature margin memory margin pulseaudio margin backlight margin battery margin wallz margin session
+modules-right = xkeyboard margin cpu margin temperature margin memory margin pulseaudio margin backlight margin battery margin wallz margin session margin tray
+modules-right-notray = xkeyboard margin cpu margin temperature margin memory margin pulseaudio margin backlight margin battery margin wallz margin session
 ```
 
 O `launch.sh` sobe uma barra por monitor: `bar/main` no monitor primário (com o
