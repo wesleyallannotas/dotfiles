@@ -11,3 +11,15 @@ pair XX:XX:XX:XX:XX:XX
 connect XX:XX:XX:XX:XX:XX
 trust XX:XX:XX:XX:XX:XX    # reconecta sozinho das próximas vezes
 exit
+
+wpctl status                # lista os dispositivos com um número (ID)
+wpctl set-default 52        # troque 52 pelo ID do seu fone em "Sinks"
+
+Áudio
+
+Devices (dispositivos): o hardware físico. A placa de som do notebook, o fone Bluetooth, um headset USB. Cada um pode ter várias entradas e saídas.
+Sinks (saídas): para onde o som vai. Alto-falante do notebook, fone, HDMI do monitor. É aqui que você escolhe onde ouvir.
+Sources (entradas): de onde o som vem. Microfone do notebook, microfone do fone.
+Filters (filtros): processamentos no meio do caminho, como cancelamento de eco ou redução de ruído. Normalmente fica vazio, a menos que você configure algum.
+Streams (fluxos): os programas tocando ou gravando agora, como o navegador tocando um vídeo ou o Teams usando o microfone.
+
