@@ -1,8 +1,13 @@
 #-----wesleyallan-sxhkd-Config-File-----
 
+# Toggle Keyboard Layout
+alt + space
+    ~/.config/sxhkd/toggle-layout.sh
+
 # Terminal Emulator 
 super + Return
-  kitty
+  alacritty
+#   kitty
 
 # Program Launcher
 super + {_,shift +}d
@@ -17,15 +22,18 @@ super + n
 
 # Ranger or thunar
 super + {_,shift + }a
-	{nautilus, kitty -e ranger}
+	{nautilus, alacritty -e ranger}
+	# {nautilus, kitty -e ranger}
 
 # Code
 super + {_,shift + }e
-  {code, kitty -e lvim }
+  {cursor, alacritty -e lvim }
+#   {code, kitty -e lvim }
 
 # btop
 super + shift + m
-    kitty --class=btop -e btop
+    alacritty --class=btop -e btop
+    # kitty --class=btop -e btop
 
 # Rofi Menus/Applets
 #super + {r,p,z,i}
@@ -43,19 +51,11 @@ super + b
 super + Escape
 	pkill -USR1 -x sxhkd
 
-# Multimedia
-XF86AudioRaiseVolume
-  pactl set-sink-volume @DEFAULT_SINK@ +2%
-    # pamixer -i 2
-XF86AudioLowerVolume
-  pactl set-sink-volume @DEFAULT_SINK@ -2%
-  # pamixer -d 2
-XF86AudioMute
-  pactl set-sink-mute @DEFAULT_SINK@ toggle
-  # pamixer -m
+# Audio
+XF86Audio{RaiseVolume,LowerVolume,Mute}
+	wpctl {set-volume @DEFAULT_AUDIO_SINK@ 5%+,set-volume @DEFAULT_AUDIO_SINK@ 5%-,set-mute @DEFAULT_AUDIO_SINK@ toggle}
 XF86AudioMicMute
   pactl set-source-mute @DEFAULT_SOURCE@ toggle
-  # pamixer -t
 XF86AudioPlay
   playerctl play-pause
 XF86AudioNext
@@ -64,6 +64,10 @@ XF86AudioPrev
   playerctl previous
 XF86AudioStop
   playerctl stop
+
+# Brightness
+XF86MonBrightness{Up,Down}
+	brightnessctl set {+5%,5%-}
 
 #-----bspwm-Hotkeys-----
 

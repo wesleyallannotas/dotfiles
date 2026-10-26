@@ -6,7 +6,7 @@
 # xhost +si:localuser:$USER
 
 # xmodmap
-xmodmap .Xmodmap
+# xmodmap .Xmodmap
 
 # Bar
 $HOME/.config/polybar/launch.sh &
