@@ -8,11 +8,8 @@
 # xmodmap
 # xmodmap .Xmodmap
 
-# Bar
-$HOME/.config/polybar/launch.sh &
-
 # Background
-$HOME/.fehbg
+# $HOME/.fehbg
 
 # Compositor
 # picom -b &
@@ -22,22 +19,45 @@ killall sxhkd; sxhkd &
 killall dunst; dunst &
 # pgrep -x sxhkd > /dev/null || sxhkd &
 # pgrep -x dunst > /dev/null || dunst &
+pgrep -x picom    || picom &
+pgrep -x nm-applet || nm-applet &
+pgrep -x lxpolkit || lxpolkit &
+pgrep -x xss-lock || xss-lock -- i3lock -c 000000 &
+pgrep -f blueman-applet || blueman-applet &
+
+## Monitores
+# Monitor desconectado/desligado é removido e suas janelas vão para outro.
+bspc config remove_unplugged_monitors true
+bspc config remove_disabled_monitors  true
+bspc config merge_overlapping_monitors true
 
 ## Workspaces
-bspc monitor -d 1 2 3 4 5 6
+# Desktops I..V em cada monitor; o watcher refaz isso (e reinicia o polybar)
+# quando um monitor é conectado/desconectado.
+pkill -f "bspc subscribe monitor_add monitor_remove"
+$HOME/.config/bspwm/monitors.sh --watch &
 
 ## Config
 bspc config border_width          0
-# bspc config window_gap            10
-bspc config window_gap            0
-bspc config border_radius         15
-bspc config bottom_padding        0
+bspc config window_gap            5
+# bspc config window_gap            0
+# border_radius só existe no fork bspwm-rounded; no bspwm oficial quem
+# arredonda as janelas é o picom (corner-radius).
+# bspc config border_radius         15
 bspc config split_ratio           0.5
 bspc config normal_border_color   "#f7768e"
 bspc config focused_border_color  "#353b45"
 
+# Zera os paddings de todos os monitores: o bspwm só aumenta o padding com a
+# strut de uma barra e nunca o reduz quando ela morre (era o espaço vazio no
+# topo do notebook). O espaço da barra volta com o polybar, iniciado no fim.
+bspc config top_padding           0
+bspc config bottom_padding        0
+bspc config left_padding          0
+bspc config right_padding         0
+
 bspc config borderless_monocle    true
-bspc config gapless_monocle       false 
+bspc config gapless_monocle       false
 bspc config focus_follows_pointer false
 bspc config paddingless_monocle   true
 bspc config single_monocle        false
@@ -50,3 +70,6 @@ bspc config removal_adjustment true
 bspc rule -a feh state=floating
 bspc rule -a Thunar state=floating focus=on
 bspc rule -a nautilus state=floating focus=on
+
+# Bar (por último, depois de zerar os paddings)
+$HOME/.config/polybar/launch.sh &

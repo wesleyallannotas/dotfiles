@@ -132,9 +132,10 @@ super + {o,i}
 	bspc node {older,newer} -f; \
 	bspc wm -h on
 
-# focus or send to the given desktop
+# focus or send to the given desktop of the focused monitor
+# (cada monitor tem seus próprios desktops I..V)
 super + {_,control + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+	bspc {desktop -f,node -d} 'focused:^{1-9,10}'
 
 #-----preselect-----
 
