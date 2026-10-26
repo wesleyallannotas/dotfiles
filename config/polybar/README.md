@@ -36,6 +36,10 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # Alterando módulos
 
 Para alterar os _modules_ basta mudar na arquivo `modules.ini` na raiz do diretório.
+Ele é incluído na barra pelo `config.ini` de todos os temas, então é o único lugar
+onde os módulos são escolhidos. Cada `config.ini` traz, comentado logo abaixo do
+`include-file` do `modules.ini`, o layout de exemplo do tema (o mesmo de
+"Exemplos!" abaixo) para copiar ao trocar de tema.
 
 ```ini
 modules-left = date wallz nft tor weather bspwm i3
@@ -146,14 +150,17 @@ modules-right = memory margin cpu margin xbacklight margin pulseaudio margin wal
 
 ![desktop](screenshots/onedark/desktop.png)
 
-O layout do One Dark fica na seção `[layout]` de `themes/onedark/config.ini`:
+O layout do One Dark (o atual do `modules.ini`):
 
 ```ini
-left = bspwm margin date margin weather
-center =
-right = cpu margin temperature margin memory margin pulseaudio margin backlight margin battery margin wallz margin session
+modules-left = bspwm margin date margin weather
+modules-center =
+modules-right = cpu margin temperature margin memory margin pulseaudio margin backlight margin battery margin wallz margin session margin tray
+modules-right-notray = cpu margin temperature margin memory margin pulseaudio margin backlight margin battery margin wallz margin session
 ```
 
 O `launch.sh` sobe uma barra por monitor: `bar/main` no monitor primário (com o
 módulo `tray`) e `bar/secondary` nos demais, pois só pode existir um tray.
+Por isso o `modules.ini` tem também `modules-right-notray` (a mesma lista sem o
+`tray`), que o `bar/secondary` usa; ao mudar `modules-right`, mude as duas.
 Em cada monitor o módulo `bspwm` mostra apenas o desktop daquele monitor.
