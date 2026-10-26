@@ -111,8 +111,8 @@ super + {_,ctrl + alt + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
 # focus the node for the given path jump
-super + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
+super + {p,comma,period}
+	bspc node -f @{parent,first,second}
 
 # focus the next/previous window in the current desktop
 super + {_,shift + }c
@@ -132,15 +132,26 @@ super + {o,i}
 	bspc node {older,newer} -f; \
 	bspc wm -h on
 
-# focus or send to the given desktop of the focused monitor
+# focus or send (and follow) to the given desktop of the focused monitor
 # (cada monitor tem seus próprios desktops I..V)
-super + {_,control + }{1-9,0}
-	bspc {desktop -f,node -d} 'focused:^{1-9,10}'
+super + {1-9,0}
+	bspc desktop -f 'focused:^{1-9,10}'
+
+super + control + {1-9,0}
+	bspc node -d 'focused:^{1-9,10}' --follow
+
+# focus the monitor in the given direction
+super + shift + {h,j,k,l}
+	bspc monitor -f {west,south,north,east}
+
+# send the node to the monitor in the given direction (and follow)
+super + ctrl + shift + {h,j,k,l}
+	bspc node -m {west,south,north,east} --follow
 
 #-----preselect-----
 
 # preselect the direction
-super + shift + {h,j,k,l}
+super + shift + {Left,Down,Up,Right}
 	bspc node -p {west,south,north,east}
 
 # Rotation
