@@ -9,7 +9,10 @@
 # xmodmap .Xmodmap
 
 # Background
-# $HOME/.fehbg
+# Wallpaper padrão do Debian (segue o tema ativo via alternatives), em cada
+# monitor. Não usa ~/.fehbg: o módulo wallz do polybar sobrescreve esse
+# arquivo, então o wallpaper dele só dura até o próximo start/reload.
+feh --no-fehbg --bg-fill /usr/share/images/desktop-base/desktop-background
 
 # Compositor
 # picom -b &
