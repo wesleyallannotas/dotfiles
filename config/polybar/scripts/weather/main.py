@@ -1,5 +1,6 @@
 import argparse
 import os
+import sys
 
 import requests
 
@@ -30,11 +31,12 @@ def unit_suffix(unit: str) -> str:
     return unit
 
 
-def get_weather(city: str, lang: str, unit: str, api_key: str) -> dict[str, str] | None:
+def get_weather(location: str, lang: str, unit: str, api_key: str) -> dict[str, str] | None:
     try:
         r = requests.get(
-            f"{OPENWEATHER_URL}?q={city}&lang={lang}&units={unit}&appid={api_key}",
+            f"{OPENWEATHER_URL}?{location}&lang={lang}&units={unit}&appid={api_key}",
             headers={"User-agent": "Mozilla/5.0"},
+            timeout=10,
         )
         data = r.json()
         temp = data["main"]["temp"]
@@ -60,6 +62,14 @@ def main() -> None:
         type=str,
         nargs="+",
         help="city name",
+    )
+    parser.add_argument(
+        "-i",
+        metavar="CITY_ID",
+        dest="city_id",
+        type=str,
+        nargs=1,
+        help="OpenWeather city ID (takes precedence over city name)",
     )
     parser.add_argument(
         "-l",
@@ -96,17 +106,23 @@ def main() -> None:
     args = parser.parse_args()
 
     api_key = args.api_key[0] if args.api_key else API_KEY
-    city = args.city[0] if args.city else get_city()
+    if args.city_id:
+        location = f"id={args.city_id[0]}"
+    else:
+        location = f"q={' '.join(args.city) if args.city else get_city()}"
     lang = args.lang[0] if args.lang else "en"
     unit = args.unit[0] if args.unit else "standard"
 
-    weather = get_weather(city, lang, unit, api_key)
-    if weather:
-        temp, desc = weather.values()
-        if args.verbose:
-            print(f"{temp}, {desc}")
-        else:
-            print(f"{temp}")
+    weather = get_weather(location, lang, unit, api_key)
+    if not weather:
+        print("--")
+        sys.exit(1)
+
+    temp, desc = weather.values()
+    if args.verbose:
+        print(f"{temp}, {desc}")
+    else:
+        print(f"{temp}")
 
 
 if __name__ == "__main__":
