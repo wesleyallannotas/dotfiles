@@ -1,3 +1,11 @@
 #!/bin/sh
+# Temperatura do pacote da CPU via sysfs (não depende do texto do `sensors`).
 
-sensors | grep 'CPU Temperature' | awk '{print substr($3, 2, length($3)-5)}' | tr "\\n" " " | sed 's/ /°C  /g' | sed 's/  $//'
+for zone in /sys/class/thermal/thermal_zone*; do
+  if [ "$(cat "$zone/type")" = "x86_pkg_temp" ]; then
+    echo "$(($(cat "$zone/temp") / 1000))°C"
+    exit 0
+  fi
+done
+
+echo "N/A"
